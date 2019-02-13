@@ -33,7 +33,7 @@ function printContact(contact) {
     var infoColumnDiv = document.createElement("div");
     infoColumnDiv.setAttribute("class", "col-12 col-sm-6 col-md-9 text-center text-sm-left");
     rowDiv.appendChild(infoColumnDiv);
-
+    
     //            <span class="fa fa-mobile fa-2x text-success float-right pulse" title="online now"></span>
     var presenceSpan = document.createElement("span");
     presenceSpan.setAttribute("class", "fa fa-mobile fa-2x text-success float-right pulse");
@@ -67,8 +67,7 @@ function printContact(contact) {
     //            <br>
     var addressLineBreak = document.createElement("br");
     infoColumnDiv.appendChild(addressLineBreak);
-
-    //            <span class="fa fa-phone fa-fw text-muted" data-toggle="tooltip" title="" data-original-title="(870) 288-4149"></span>
+     //            <span class="fa fa-phone fa-fw text-muted" data-toggle="tooltip" title="" data-original-title="(870) 288-4149"></span>
     var phoneActionSpan = document.createElement("span");
     phoneActionSpan.setAttribute("class", "fa fa-phone fa-fw text-muted");
     phoneActionSpan.setAttribute("data-toggle", "tooltip");
