@@ -1,0 +1,165 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Gio's Quiz</title>
+        <link rel="stylesheet" href="css/style.css">
+    </head>
+    <body>
+        
+        <script src="https://code.jquery.com/jquery.min.js"></script>
+        
+        <!--Bootstrap files-->
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+        <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
+        
+        
+        <div>
+            <h1>How well do you know Gio?</h1>
+        </div>
+        
+        <div id= "container">
+            
+            <div class="q1">
+                <label for="feedback">Gio has 5 brothers</label>
+                <div>
+                    <input type="radio" id="item1" name="1q" value="1">
+                    <label for="item1"> True </label>
+                
+                </div>
+                
+                <div>
+                    <input type="radio" id="item2" name="1q" value="0">
+                       <label for="item2"> False </label>
+                </div> 
+            </div>
+
+<!-- =========================================================================== -->
+        
+         <div class="q2">
+            <label for="feedback">Was Gio born on March 2</label>
+            <div>
+                <input type="radio" id="item3" name="2q" value="1">
+            <label for="item3"> True </label>
+            </div>
+                
+            <div>
+                <input type="radio" id="item4" name="2q" value="0">
+                <label for="item4"> False </label>
+            </div>
+        </div>
+<!-- =========================================================================== -->
+        
+         <div class="q2">
+            <label for="feedback">Gio is a clown</label>
+            <div>
+                <input type="radio" id="item5" name="3q" value="1">
+            <label for="item1"> True </label>
+            </div>
+                
+            <div>
+                <input type="radio" id="item6" name="3q" value="0">
+                <label for="item6"> False </label>
+            </div>
+        </div>
+<!-- =========================================================================== -->
+        
+         <div class="q2">
+            <label for="feedback">Gio is adopted</label>
+            <div>
+                <input type="radio" id="item7" name="4q" value="1">
+            <label for="item1"> True </label>
+            </div>
+                
+            <div>
+                <input type="radio" id="item8" name="4q" value="0">
+                <label for="item8"> False </label>
+            </div>
+        </div>
+<!-- =========================================================================== -->
+        
+         <div class="q2">
+            <label for="feedback">Gio is in the CSin3 program</label>
+            <div>
+                <input type="radio" id="item9" name="5q" value="1">
+            <label for="item9"> True </label>
+            </div>
+                
+            <div>
+                <input type="radio" id="item10" name="5q" value="0">
+                <label for="item10"> False </label>
+            </div>
+        </div>
+<!-- =========================================================================== -->
+        
+         <div class="q2">
+            <label for="feedback">Gio has a bearded dragon</label>
+            <div>
+                <input type="radio" id="item11" name="6q" value="1">
+            <label for="item11"> True </label>
+            </div>
+                
+            <div>
+                <input type="radio" id="item12" name="6q" value="0">
+                <label for="item12"> False </label>
+            </div>
+        </div>
+<!-- =========================================================================== -->
+    
+        
+        
+        <div id="button">
+            <button class ="checker" type = "button">Submit Answers</button>
+        </div>
+    
+        <footer >
+        </footer>
+        
+        <script>
+       
+        
+                      $(".checker" ).click(function() {
+     
+            });
+  
+            
+        </script>
+    
+    </body>
+    
+</html>
+<!--
+          $( ".checker" ).click(function() {
+            for(var i = 0; i < 3; i++)
+            {
+                index = Math.floor(Math.random() * 3);
+                img = imgArr[index];
+                
+                info[index]++;
+                
+                $(".pic"+(i+1)).html("<img src = 'img/"+img+ ".png'/>");
+            }
+            
+            if(info[0] === 3){
+                total+= 100;
+                $('#earnings').html("You won $100");
+            }
+            else if(info[1] === 3){
+                total+=300;
+                $('#earnings').html("You won $300");
+            }
+            else if(info[2] === 3){
+                total += 500;
+                $('#winner').html("J A C K P O T!");
+                $('#earnings').html("You won $500");
+                $('#winner').color("green");
+            }
+        
+            info[0] = 0;
+            info[1] = 0;
+            info[2] = 0;
+            $('#winner').html("");
+            $('#winnings').html("Total winnings $" + total);   
+            $('#earnings').html("");
+            });
+
+-->
