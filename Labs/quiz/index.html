@@ -17,9 +17,10 @@
             <h1>How well do you know Gio?</h1>
         </div>
         
-        <div id= "container">
+    <form>
             
             <div class="q1">
+                
                 <label for="feedback">Gio has 5 brothers</label>
                 <div>
                     <input type="radio" id="item1" name="1q" value="1">
@@ -28,138 +29,187 @@
                 </div>
                 
                 <div>
-                    <input type="radio" id="item2" name="1q" value="0">
-                       <label for="item2"> False </label>
+                    <input type="radio" id="item1" name="1q" value="0">
+                       <label for="item1"> False </label>
                 </div> 
+                 <div id="correct1"></div>
             </div>
 
 <!-- =========================================================================== -->
         
          <div class="q2">
-            <label for="feedback">Was Gio born on March 2</label>
+            <label for="feedback">Gio was born on March 2</label>
             <div>
-                <input type="radio" id="item3" name="2q" value="1">
+                <input type="radio" id="item2" name="2q" value="1">
+            <label for="item2"> True </label>
+            </div>
+                
+            <div>
+                <input type="radio" id="item2" name="2q" value="0">
+                <label for="item2"> False </label>
+            </div>
+             <div id="correct2"></div>
+        </div>
+<!-- =========================================================================== -->
+        
+         <div class="q3">
+            <label for="feedback">Gio is a clown</label>
+            <div>
+                <input type="radio" id="item3" name="3q" value="1">
             <label for="item3"> True </label>
             </div>
                 
             <div>
-                <input type="radio" id="item4" name="2q" value="0">
-                <label for="item4"> False </label>
+                <input type="radio" id="item3" name="3q" value="0">
+                <label for="item3"> False </label>
             </div>
+             <div id="correct3"></div>
         </div>
 <!-- =========================================================================== -->
         
-         <div class="q2">
-            <label for="feedback">Gio is a clown</label>
-            <div>
-                <input type="radio" id="item5" name="3q" value="1">
-            <label for="item1"> True </label>
-            </div>
-                
-            <div>
-                <input type="radio" id="item6" name="3q" value="0">
-                <label for="item6"> False </label>
-            </div>
-        </div>
-<!-- =========================================================================== -->
-        
-         <div class="q2">
+         <div class="q4">
             <label for="feedback">Gio is adopted</label>
             <div>
-                <input type="radio" id="item7" name="4q" value="1">
-            <label for="item1"> True </label>
+                <input type="radio" id="item4" name="4q" value="1">
+            <label for="item4"> True </label>
             </div>
                 
             <div>
-                <input type="radio" id="item8" name="4q" value="0">
-                <label for="item8"> False </label>
+                <input type="radio" id="item4" name="4q" value="0">
+                <label for="item4"> False </label>
             </div>
+             <div id="correct4"></div>
         </div>
 <!-- =========================================================================== -->
         
-         <div class="q2">
+         <div class="q5">
             <label for="feedback">Gio is in the CSin3 program</label>
             <div>
-                <input type="radio" id="item9" name="5q" value="1">
-            <label for="item9"> True </label>
+                <input type="radio" id="item5" name="5q" value="1">
+            <label for="item5"> True </label>
             </div>
                 
             <div>
-                <input type="radio" id="item10" name="5q" value="0">
-                <label for="item10"> False </label>
+                <input type="radio" id="item5" name="5q" value="0">
+                <label for="item5"> False </label>
             </div>
+             <div id="correct5"></div>
         </div>
 <!-- =========================================================================== -->
         
-         <div class="q2">
+         <div class="q6">
             <label for="feedback">Gio has a bearded dragon</label>
             <div>
-                <input type="radio" id="item11" name="6q" value="1">
-            <label for="item11"> True </label>
+                <input type="radio" id="item6" name="6q" value="1">
+            <label for="item6"> True </label>
             </div>
                 
             <div>
-                <input type="radio" id="item12" name="6q" value="0">
-                <label for="item12"> False </label>
+                <input type="radio" id="item6" name="6q" value="0">
+                <label for="item6"> False </label>
             </div>
+             <div id="correct6"></div>
         </div>
 <!-- =========================================================================== -->
-    
+    </form>
         
         
         <div id="button">
             <button class ="checker" type = "button">Submit Answers</button>
+            <button class = "checker2" type = "button" onclick = "refresh()">Reset Quiz</button>
         </div>
     
         <footer >
+            <div id = "score"></div>
+            <div id ="congrats"></div>
         </footer>
-        
+          
+        <script src="https://code.jquery.com/jquery-3.3.1.min.js" integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8=" crossorigin="anonymous"></script>
         <script>
-       
+                          
+            $("button.checker").on("click", function(e){
+                    var selectedRadio1 = $("input[name='1q']:checked");
+                    var selectedRadio2 = $("input[name='2q']:checked");
+                    var selectedRadio3 = $("input[name='3q']:checked");
+                    var selectedRadio4 = $("input[name='4q']:checked");
+                    var selectedRadio5 = $("input[name='5q']:checked");
+                    var selectedRadio6 = $("input[name='6q']:checked");
+                    var total = 0;
+                    var item1 = selectedRadio1.val();
+                    var item2 = selectedRadio2.val();
+                    var item3 = selectedRadio3.val();
+                    var item4 = selectedRadio4.val();
+                    var item5 = selectedRadio5.val();
+                    var item6 = selectedRadio6.val();
+                    
+    
+                    if(item1 == 0){
+                        total++;
+                        $(".q1").css("background-color", "green");     
+                        $('#correct1').prepend('<img id="theImg" src="img/check.png" width=25 height = 25 position="relative"/>');
+                    }else{
+                        $(".q1").css("background-color", "red");     
+                        $('#correct1').prepend('<img id="theImg" src="img/x.jpeg" width=25 height = 25 position="relative"/>');
+                    }
+                    
+                    if(item2 == 1){
+                        total++;
+                        $(".q2").css("background-color", "green");    
+                        $('#correct2').prepend('<img id="theImg" src="img/check.png" width=25 height = 25 position="relative"/>');
+                    }else{
+                        $(".q2").css("background-color", "red");     
+                        $('#correct2').prepend('<img id="theImg" src="img/x.jpeg" width=25 height = 25 position="relative"/>');
+                    }
+                    
+                    if(item3 == 0){
+                        total++
+                        $(".q3").css("background-color", "green");    
+                        $('#correct3').prepend('<img id="theImg" src="img/check.png" width=25 height = 25 position="relative"/>');
+                    }  else{
+                        $(".q3").css("background-color", "red");     
+                        $('#correct3').prepend('<img id="theImg" src="img/x.jpeg" width=25 height = 25 position="relative"/>');
+                    }
+                    
+                    if(item4 == 0){
+                        total++;
+                        $(".q4").css("background-color", "green"); 
+                        $('#correct4').prepend('<img id="theImg" src="img/check.png" width=25 height = 25 position="relative"/>');
+                    }  else{
+                        $(".q4").css("background-color", "red");     
+                        $('#correct4').prepend('<img id="theImg" src="img/x.jpeg" width=25 height = 25 position="relative"/>');
+                    }
+                    
+                    if(item5 == 1){
+                        total++
+                        $(".q5").css("background-color", "green");    
+                        $('#correct5').prepend('<img id="theImg" src="img/check.png" width=25 height = 25 position="relative"/>');
+                    }  else{
+                        $(".q5").css("background-color", "red");     
+                        $('#correct5').prepend('<img id="theImg" src="img/x.jpeg" width=25 height = 25 position="relative"/>');
+                    }
+                    
+                    if(item6 == 1){
+                        total++;
+                        $(".q6").css("background-color", "green");    
+                        $('#correct6').prepend('<img id="theImg" src="img/check.png" width=25 height = 25 position="relative"/>');
+                    }  else{
+                        $(".q6").css("background-color", "red");     
+                        $('#correct6').prepend('<img id="theImg" src="img/x.jpeg" width=25 height = 25 position="relative"/>');
+                    }
+                          
+                $("#score").html(total + " out of 6");
+                
+                if(total == 6)
+                    $("#congrats").html("Congrats! You got higher then 90%!!");
+                
+           });  
+           
+                function refresh() {
+                 location.reload();
+                }            
         
-                      $(".checker" ).click(function() {
-     
-            });
-  
-            
         </script>
     
     </body>
     
 </html>
-<!--
-          $( ".checker" ).click(function() {
-            for(var i = 0; i < 3; i++)
-            {
-                index = Math.floor(Math.random() * 3);
-                img = imgArr[index];
-                
-                info[index]++;
-                
-                $(".pic"+(i+1)).html("<img src = 'img/"+img+ ".png'/>");
-            }
-            
-            if(info[0] === 3){
-                total+= 100;
-                $('#earnings').html("You won $100");
-            }
-            else if(info[1] === 3){
-                total+=300;
-                $('#earnings').html("You won $300");
-            }
-            else if(info[2] === 3){
-                total += 500;
-                $('#winner').html("J A C K P O T!");
-                $('#earnings').html("You won $500");
-                $('#winner').color("green");
-            }
-        
-            info[0] = 0;
-            info[1] = 0;
-            info[2] = 0;
-            $('#winner').html("");
-            $('#winnings').html("Total winnings $" + total);   
-            $('#earnings').html("");
-            });
-
--->
