@@ -1,0 +1,144 @@
+<html>
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+  <title>AJAX: Sign Up Page</title>
+ <link rel="stylesheet" href="css/styles.css">
+</head>
+
+<body id="dummybodyid">
+  <h1> Sign Up Form </h1>
+
+  <form>
+    <fieldset>
+      <legend>Sign Up</legend>
+      <div><label>First Name:</label><input type="text"></div>
+      <div><label>Last Name:</label><input type="text"></div>
+      <div><label>Email:</label><input type="text"></div>
+      <div><label>Phone Number:</label><input type="text"></div>
+      <div id = "zipster"><label>Zip Code:</label><input type="text" id ="zip"><div id="zippy"></div></div>
+      <div id ="city" ><label>City:</label> </div>
+      <div id = "lat"><label>Latitude:</label></div>
+      <div id = "long"><label>Longitude:</label></div>
+      <div><label>State:</label><input type="text"  id ="state"></div>
+      <div><label>Select a County:</label><select id="county"></select></div>
+      <div id ="userName">
+        <label>Desired Username:</label>
+        <input type="text" id="temp">
+        <div id = "valid"></div>
+      </div>
+      <div><label>Password:</label><input type="password" id="checkp1"><div id="checker3"></div></div>
+      <div><label>Type Password Again:</label><input type="password" id="checkp2"><div id="checker3"></div></div>
+      <div><input type="submit" value="Sign up!"></div>
+    </fieldset>
+  </form>
+  
+      <script src="https://code.jquery.com/jquery-3.3.1.min.js" integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8=" crossorigin="anonymous"></script>
+
+      <script>
+      
+      
+      $("#zip").change(getInfo);
+  		$("#state").change(getInfo2);
+      $('#temp').change(checkName);
+      $('#checkp2').change(checkPass);
+      
+      function checkPass(){
+        var p1 = $('#checkp1').val();
+        var p2 = $('#checkp2').val();
+        if( p1 !== p2)
+        {
+          $('#checker3').html("Retype Password!");
+        }
+        
+      }
+      
+      function checkName()
+      {
+          var arr = ["gcerna", "theOne"];
+          var checker = $('#temp').val();
+         
+          if(arr.includes(checker) == true)
+          {
+            $('#valid').html("Name is already taken!").css("color", "red"); 
+          }else{
+            $('#valid').html("Name is good to use!").css("color", "green"); 
+            arr.push(checker);
+          }
+      }
+      
+  	
+        function getInfo() {        
+      $.ajax({
+          type: "get",
+          url: "http://itcdland.csumb.edu/~milara/ajax/cityInfoByZip.php",
+          dataType: "json",
+          data: {
+            "zip"  : $("#zip").val() // url + ? + zip = 93905
+            //"city" : "salinas // + , city = salinas
+          },
+          success: function(data,status) {
+           
+           if(data == false){
+              $('#zippy').html(" Zip not found!");
+           }else{
+            $('#city').html("City: " + data[1]);
+            $('#long').html("Longitude: " + data[6]);
+            $('#lat').html("Latitude: " + data[5]);
+           }
+           
+          },
+          complete: function(data,status) { //optional, used for debugging purposes
+           // console.log(status);
+          }
+         });
+          
+      
+        }
+        
+         function getInfo2() {        
+      $.ajax({
+          type: "get",
+          url: "http://itcdland.csumb.edu/~milara/ajax/countyList.php",
+          dataType: "json",
+          data: {
+            "state"  : $("#state").val()
+          },
+          success: function(data,status) {
+            for(var i = 0; i < data.length; i++)
+              $('#county').append('<option value="' + data[i] + '">' + data[i].county + '</option>');
+          
+            console.log(data);
+          },
+          complete: function(data,status) { //optional, used for debugging purposes
+           // console.log(status);
+          }
+         });
+        }
+      </script>
+  
+
+</body>
+
+</html>
+
+<!-- 
+
+{
+    "zip": "93955",
+    "0": "93955",
+    "city": "Seaside",
+    "1": "Seaside",
+    "state": "CA",
+    "2": "CA",
+    "county": "Monterey County",
+    "3": "Monterey County",
+    "areaCode": "831",
+    "4": "831",
+    "latitude": "37",
+    "5": "37",
+    "longitude": "-122",
+    "6": "-122"
+}
+
+
+-->

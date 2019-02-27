@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title> </title>
+    </head>
+    <body>
+        <form>
+          State: <input type="text" id="state" onchange="getCountyList()">
+          <br />  
+          County: <select id="county"></select>
+        </form>
+    
+    
+    <script src="https://code.jquery.com/jquery-3.3.1.min.js" integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8=" crossorigin="anonymous"></script>
+
+    
+    <script>
+    
+    function getCountyList(){
+        $.ajax({
+          type: "GET",
+          url: "https://www.showdeolabs.com/cors?url=http://hosting.csumb.edu/laramiguel/ajax/countyList.php",
+          dataType: "json",
+          data: { "state": $("#state").val() },
+          success: function(data, status) {
+             console.log(data);
+          },
+          error: function(err) {
+            console.log(err)
+          },
+          complete: function() {
+            //optional, used for debugging purposes
+          }
+        });
+    }
+    </script>
+    
+    </body>
+</html>
