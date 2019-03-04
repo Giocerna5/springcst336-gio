@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width">
+  <title>Practice 5: Like/Dislike Video App</title>
+  <script src="https://code.jquery.com/jquery-3.1.0.js"></script>
+</head>
+<body>
+
+  <!--Embed here any YouTube video using the "iframe" tag -->
+  <iframe width="650" height="500"  
+  src="https://www.youtube.com/embed/tik4QgvMwd4" >
+  </iframe>
+  
+  <button id="like">
+    <img src="img/like.png" alt="Like button" width="35" onclick = 'ajaxCall("like")' id="liker"/>
+  </button>
+  
+  <!--The number of likes is displayed within the span below-->
+  <span id="likes"></span>
+
+  <button id="dislike">
+    <img src="img/dislike.png" alt="Dislike button" width="35" onclick = 'ajaxCall("dislike")' id="disliker"/>
+  </button>
+  
+  <!--The number of likes is displayed within the span below-->
+  <span id="dislikes"></span>
+
+</body>
+<script>
+
+  //This AJAX call returns a number of "likes" and "dislikes"
+  //Enter a YouTube video id for "data".
+  var l = 0;
+  var d = 0;
+  var x = 0;
+  var y = 0;
+  
+  function ajaxCall(action){
+    if(action == "like")
+    {
+      l++;
+      d= 0;
+      
+      if(l == 1){
+       $("#liker").attr("src","img/cancel_like.png");
+       $.ajax({
+        type:"get",
+        url:  "https://cst336.herokuapp.com/projects/api/videoLikesAPI.php",
+        dataType: "json",
+        data: { 
+          "videoId": "tik4QgvMwd4",
+          "action" : action
+        },
+       success: function(data,status) {
+           x = data.likes;
+          $("#likes").html(x);
+
+            if(l == 2){
+             $("#liker").attr("src","img/like.png");
+             $("#likes").html(x);
+             l = 0;
+            }
+       },
+       complete: function(data,status) { 
+           //alert(status);
+       }
+     });    }
+     if(l == 2){
+       $("#liker").attr("src","img/like.png");
+      x--;
+      $("#likes").html(x);
+       l = 0;
+     }
+  }
+    else if(action =="dislike"){
+      d++;
+      l = 0;
+      if(d == 1){
+        $("#disliker").attr("src","img/cancel_dislike.png");
+    	$.ajax({
+            type: "get",
+            url:  "https://cst336.herokuapp.com/projects/api/videoLikesAPI.php",
+            dataType: "json",
+            data: { 
+              "videoId": "tik4QgvMwd4",
+              "action": action},  //   <----AS THE VALUE, ENTER THE YOUTUBE VIDEO ID
+            
+            success: function(data,status) {
+                  y = data.dislikes;
+                 $("#dislikes").html(y);
+            },
+              complete: function(data,status) { 
+                  //alert(status);
+              }
+         });
+      }else if(d == 2){
+        $("#disliker").attr("src","img/dislike.png");
+        y--;
+        $("#dislikes").html(y);
+        d=0;
+      }
+    }
+  }
+  
+
+</script>
+</html>

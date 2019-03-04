@@ -81,9 +81,9 @@
            if(data == false){
               $('#zippy').html(" Zip not found!");
            }else{
-            $('#city').html("City: " + data[1]);
-            $('#long').html("Longitude: " + data[6]);
-            $('#lat').html("Latitude: " + data[5]);
+            $('#city').html("City: " + data.city);
+            $('#long').html("Longitude: " + data.longitude);
+            $('#lat').html("Latitude: " + data.latitude);
            }
            
           },
