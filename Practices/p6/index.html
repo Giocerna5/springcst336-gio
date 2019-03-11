@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title> </title>
+    </head>
+    <link rel="stylesheet" href="css/stylesheet.css" type="text/css" />
+    <body>
+        <div class="container">
+        <h1> Discount Shopping!</h1>
+        <table>
+            <tr>
+                <th>Product</th>
+                <th>Unit Price</th>
+                <th>Quantity</th>
+                <th>Total</th>
+            </tr>
+            <tr>
+                <td id="product" ></td>
+                <td id="product_price"></td>
+                <td id="quantity"></td>
+                <td id="product_total"></td>
+            </tr>
+            
+            <tr>
+                <td>Discount</td>
+                <td></td>
+                <td id="discount"></td>
+                <td id="discount_total"></td>
+            </tr>
+            
+            <tr>
+                <td>Subtotal</td>
+                <td></td>
+                <td></td>
+                <td id="afterDiscount"></td>
+            </tr>
+            <tr>
+                <td>Tax(10%)</td>
+                <td></td>
+                <td></td>
+                <td id="tax"></td>
+            </tr>
+            <tr>
+                <td>Total</td>
+                <td></td>
+                <td></td>
+                <td id="finalTotal"></td>
+            </tr>
+        </table>
+        
+        <input type="text" id="promoCode"/>
+        
+        </div>
+        
+        <script src="https://code.jquery.com/jquery.min.js"></script>
+        <script>
+            $("td").css("border","1px solid black");
+        </script>
+    
+     
+      <script src="https://code.jquery.com/jquery-3.3.1.min.js" integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8=" crossorigin="anonymous"></script>
+
+      <script>
+      
+      getInfo();
+    
+    var item;
+    function getInfo() {        
+      $.ajax({
+          type: "get",
+          url: "api/getRandomProduct.php",
+          dataType: "json",
+          data: {
+              
+          },
+          success: function(data,status) {
+             console.log(data);
+             item = data.product;
+             $("#product").html(data.product);
+             $("#product_price").html("$"+data.price);
+             $("#quantity").html(data.qty);
+             $("#product_total").html("$"+data.price*data.qty);
+          },
+          complete: function(data,status) { //optional, used for debugging purposes
+           // console.log(status);
+          }
+         });
+    }
+    //i stored the product name in item. or ar u calling the item val from the html? 
+    //what needs to be checked in the api? the product or the promo code?
+    // igot it. user inputs discount code, we get that value and iterate through api array and if its in there, apply discount
+    // comlete the ajax call GIO <--------------------
+   /*
+    $("#promoCode").keyup(function(){
+          $.ajax({
+          type: "get",
+          url: "api/applyPromoCode/.php",
+          dataType: "json",
+          data: {
+              
+          },
+          success: function(data,status) {
+             console.log(data);
+             
+             item = data.product;
+             $("#product").html(data.product);
+             $("#product_price").html("$"+data.price);
+             $("#quantity").html(data.qty);
+             $("#product_total").html("$"+data.price*data.qty);
+            
+          },
+          complete: function(data,status) { 
+        //optional, used for debugging purposes
+        // console.log(status);
+          }
+         });
+    }
+    */
+    </script>
+    
+    
+    </body>
+    
+   
+</html>
