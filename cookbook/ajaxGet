@@ -1,0 +1,21 @@
+   $.ajax({
+                type:"get",
+                url: "connect.php",
+                dataType: "json",
+                data: {},
+                success: function(data) {
+                    $('#product').html(data[i].productName);
+                    $('#product_price').html(data[i].productPrice);
+                    var image = '';
+                     image += '<img src="' +  data[i].productImage + '" />';
+                    $('#gio').html(image);
+                },
+                error: function(err) {
+                    console.log("Houston, we have a problem!")
+                    console.log(arguments);
+                },
+                complete: function(data, status) {
+                    // Called whether success or error
+                    //console.log(status);
+                }
+            });

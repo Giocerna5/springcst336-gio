@@ -49,7 +49,7 @@
         </table>
         
         <input type="text" id="promoCode"/>
-        
+        <div id ="gio"></div>
         </div>
         
         <script src="https://code.jquery.com/jquery.min.js"/></script>
@@ -57,13 +57,18 @@
         $("td").css("border","1px solid black");
 
         $(document).ready(function(e) {
+            var i = Math.floor((Math.random() * 20) + 1);
             $.ajax({
-                type: "GET",
-                url: "./connect.php",
+                type:"get",
+                url: "connect.php",
                 dataType: "json",
                 data: {},
                 success: function(data) {
-                    console.log(data);
+                    $('#product').html(data[i].productName);
+                    $('#product_price').html(data[i].productPrice);
+                    var image = '';
+                     image += '<img src="' +  data[i].productImage + '" />';
+                    $('#gio').html(image);
                 },
                 error: function(err) {
                     console.log("Houston, we have a problem!")
