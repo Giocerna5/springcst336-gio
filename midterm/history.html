@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>History @ Cinder </title>
+     <link href="css/styles.css" rel="stylesheet" type = "text/css"/>
+         <script src="https://code.jquery.com/jquery-3.1.1.min.js"> </script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
+        <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
+ 
+     <script>
+     var list = [];
+            $(document).ready(function(){
+            
+             $.ajax({
+                type:"GET",
+                url: "api/getMatch.php",
+                dataType: "json",
+                data: {},
+                success: function(data, status) {
+                  //console.log(data);
+                  data.forEach(function(key){
+                        if(key['match_user_id'] == 1){
+                            list.push(key['user_id']);
+                        }
+                                        
+                    }); 
+                },
+                error: function(err) {
+                    console.log("Houston, we have a problem!")
+                    console.log(arguments);
+                },
+         
+            });
+       
+                $.ajax({
+                type:"GET",
+                url: "api/user.php",
+                dataType: "json",
+                data: {},
+                success: function(data, status) {
+                    //console.log(data[0]['username']);
+               
+                  
+                  for (i = 0; i < list.length; i++) {
+                  //  $("#info").append(data[list[i]]);
+                    console.log(list[i]);
+                    }
+                },
+                error: function(err) {
+                    console.log("Houston, we have a problem!")
+                    console.log(arguments);
+                },
+         
+            });
+            
+       
+            });
+            
+        </script>
+    </head>
+    <body>
+    <div align="center">
+        <center><h1>History</h1></center>
+      <a href="index.php"> <underline>Home</underline></a>
+            |
+      <a href="history.html"> <underline>History</underline></a>
+        
+        </div>
+    <p>Username     Status     When<p>
+    <hr>
+    <div id="info"></div>
+
+    </body>
+</html>
