@@ -1,6 +1,11 @@
 #welcomeText{
     padding: 35px;
 }
+#gio{
+    
+        color: red;
+}
+
 body{
     background-color:black;
     color:gray;
