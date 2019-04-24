@@ -30,17 +30,14 @@
           url: "https://pixabay.com/api/?key=12231143-803816f45e11303a402582e0f",
           dataType: "json",
           data: {
+              "info"  : $("#pic2").val()
           },
           success: function(data,status) {
             var info = run();
-          /*  for(var i = 0; i < 450; i++)
-            {
-               // var n =  data.hits[i].tags.includes(info);
-               // if(n == true)
-                    $("#im").append("<img src='" + data.hits[i].largeImageURL + "' />");
-                  
-                    
-            }*/     
+     
+                  for (var i = 0; i < 3; i++)
+                    $("#im").append("<img src='" + data.hits[i].largeImageURL + "'width='500' height='600' />");
+          
        
         
             console.log(data);
