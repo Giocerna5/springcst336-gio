@@ -1,0 +1,21 @@
+header{
+    display: flex;
+    justify-content: space-between;
+}
+#log{
+    position:absolute;
+   top:0;
+   right:0;
+    display: flex;
+}
+.log1{
+    padding: 1em;
+    margin: .5em;
+}
+.log1:hover{
+  background-color: red;
+}
+.removeLinkDecor{
+    color: black;
+    text-decoration: none;
+}
