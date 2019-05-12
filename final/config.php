@@ -4,8 +4,8 @@
     require_once "GoogleApi/vendor/autoload.php";
     $gClient = new Google_Client();
     
-    $gClient->setClientId("611897826857-5q2jb9866mo128njke4hurgn6vm7qiss.apps.googleusercontent.com");
-    $gClient->setClientSecret("oYdPqHIwcswYO5jgOuAmdty2");
+    $gClient->setClientId("860659160421-ta259f0s6g054khfvu4jp13857o9s1a7.apps.googleusercontent.com");
+    $gClient->setClientSecret("vSwcun-RIF124oRPm75DthmJ");
     $gClient->setApplicationName("User login");
      //$gClient->setRedirectUri("https://springcst336-gio-giocerna.c9users.io/w/final/g-callback.php");
      $gClient->setRedirectUri("https://giotest.herokuapp.com/final/g-callback.php");
