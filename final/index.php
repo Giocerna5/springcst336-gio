@@ -29,22 +29,17 @@
     <body>
          
         <br><br> <br><br> <br><br> 
-        <table style="width:70%" align="center"id="data">
+        <table style="width:110%" align="center"id="data">
             <tr>
                 <td>Date</td>
-                <td>Start Time</td>
+                <td>Start Time(Military Time)</td>
                 <td>Duration</td>
                 <td>Booked By</td>
                 <td><button onclick="document.getElementById('id01').style.display='block'" class="w3-button">Add</button></td>
             </tr>
-             <tr>
-                <td>5/1/2018</td>
-                <td>9 AM</td>
-                <td>1 hours</td>
-                <td>Not booked</td>
-                <td><input type="button" onclick= "" value="Details"/></td>
-                <td><input type="button" onclick= "" value="Delete"/></td>
-            </tr>
+            
+                
+            </table>
         </table>
         
         
@@ -69,13 +64,74 @@
         </div>
         
         <script>
+         func2();
+        
            function func(){ // Declare a function
-            var date = $('#date').val();
+            var date = $('#date').val()
             var start = $('#start').val();
             var end = $('#end').val();
-            var temp = end - start;
-            console.log(temp);
+            var duration = diff(start, end).toString();
+            var temp = parseInt(duration); 
+            //console.log(temp);
+            if(temp > 12){
+                temp-12;
+            var temp2 = temp.toString();
+            
+            duration.replace(0, "0");
+            duration.replace(1,"temp2")
             }
+            
+            console.log(duration);
+            
+             $.ajax({
+                type:"POST",
+                url: "./timeAdd.php",
+                data: {
+                    "date" : date,
+                    "start" : start,
+                    "duration" : duration
+                }, 
+                success: function(data, status) {
+                 //console.log(date + " " + start + " " + duration)
+                
+                 location.reload();
+                },
+                error: function(err) {
+                    console.log("Houston, we have a problem!")
+                },
+            });
+            
+            
+            }
+           
+           function func2()
+           {
+            $.ajax({
+                type:"GET",
+                url: "getInfo.php",
+                dataType: "json",
+                data: {},
+                success: function(data, status) {
+                    for(var i = 0; i < data.length; i++)
+                    {
+                        $('#data').append(
+                            "<tr> \n<td id = 'bang'> " + data[i].date + " </td>"
+                            +"\n<td> " + data[i].start + " </td>"
+                            +"\n<td> " + data[i].duration + " hours</td>"
+                            +"\n<td> " + data[i].author + " </td>"
+                            + "<td><input type='button' onclick= '' value='Details'/></td> \n<td><input type='button' onclick= '' value='Delete'/></td><tr>"
+                            )
+                    }
+                },
+                error: function(err) {
+                    console.log("Houston, we have a problem!")
+                    console.log(arguments);
+                },
+         
+            });
+               
+           }
+           
            
            function diff(start, end) {
             start = start.split(":");
@@ -86,8 +142,6 @@
             var hours = Math.floor(diff / 1000 / 60 / 60);
             diff -= hours * 1000 * 60 * 60;
             var minutes = Math.floor(diff / 1000 / 60);
-        
-            // If using time pickers with 24 hours format, add the below line get exact hours
             if (hours < 0)
                hours = hours + 24;
         

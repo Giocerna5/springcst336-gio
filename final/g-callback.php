@@ -1,7 +1,7 @@
 <?php
     require_once "config.php";
     
-   require_once "getDB.php";
+    include "getDB.php";
     
     if(isset($_SESSION['access_token']))
         $gClient->SetAccessToken($_SESSION['access_token']);
@@ -20,7 +20,7 @@
     
    // echo"<pre>"; can be pushed to data base
   //var_dump($userData);
-   /*
+   
         $conn = getConnection('final');
         $_SESSION['email'] = $userData['email'];
         $username =  $_SESSION['email'];
@@ -50,7 +50,7 @@
             $stmt2->execute( array (":email" => $email,":name" => $name));
          }
     
-*/
+
     header('Location: index.php'); 
     exit();
 
