@@ -1,7 +1,7 @@
 <?php
     require_once "config.php";
     
-   include "getDB.php";
+   require_once "getDB.php";
     
     if(isset($_SESSION['access_token']))
         $gClient->SetAccessToken($_SESSION['access_token']);
